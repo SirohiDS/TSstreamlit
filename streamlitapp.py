@@ -2,6 +2,7 @@
 # pip install streamlit fbprophet yfinance plotly
 
 import streamlit as st
+import numpy as np
 from datetime import date
 import yfinance as yf
 from prophet import Prophet
