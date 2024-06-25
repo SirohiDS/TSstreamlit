@@ -1,6 +1,5 @@
 # streamlit run streamlitapp.py
 # pip install streamlit fbprophet yfinance plotly
-pip install --upgrade prophet
 
 import streamlit as st
 import numpy as np
