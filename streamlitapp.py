@@ -1,11 +1,8 @@
-# streamlit run streamlitapp.py
-# pip install streamlit fbprophet yfinance plotly
-
 import streamlit as st
-import numpy as np
-import pandas as pd
 from datetime import date
 import yfinance as yf
+import numpy as np
+import pandas as pd
 from prophet import Prophet
 from prophet.plot import plot_plotly, add_changepoints_to_plot
 from prophet.diagnostics import cross_validation, performance_metrics
@@ -29,7 +26,6 @@ def load_data(ticker):
     data.reset_index(inplace=True)
     return data
 
-	
 data_load_state = st.text('Loading data...')
 data = load_data(selected_stock)
 data_load_state.text('Loading data... done!')
@@ -39,12 +35,12 @@ st.write(data.tail())
 
 # Plot raw data
 def plot_raw_data():
-	fig = go.Figure()
-	fig.add_trace(go.Scatter(x=data['Date'], y=data['Open'], name="stock_open"))
-	fig.add_trace(go.Scatter(x=data['Date'], y=data['Close'], name="stock_close"))
-	fig.layout.update(title_text='Time Series data with Rangeslider', xaxis_rangeslider_visible=True)
-	st.plotly_chart(fig)
-	
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=data['Date'], y=data['Open'], name="stock_open"))
+    fig.add_trace(go.Scatter(x=data['Date'], y=data['Close'], name="stock_close"))
+    fig.layout.update(title_text='Time Series data with Rangeslider', xaxis_rangeslider_visible=True)
+    st.plotly_chart(fig)
+
 plot_raw_data()
 
 # Predict forecast with Prophet.
@@ -60,7 +56,7 @@ forecast = m.predict(future)
 st.subheader('Forecast data')
 st.write(forecast.tail())
     
-st.write("Forecast plot")
+st.write('Forecast plot')
 fig1 = plot_plotly(m, forecast)
 st.plotly_chart(fig1)
 
@@ -81,3 +77,4 @@ st.write(df_p.head())
 st.write("Cross-Validation MAPE Plot")
 fig4 = plot_cross_validation_metric(df_cv, metric='mape')
 st.pyplot(fig4)
+
