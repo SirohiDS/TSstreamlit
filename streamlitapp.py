@@ -2,6 +2,8 @@
 # pip install streamlit fbprophet yfinance plotly
 
 import streamlit as st
+import numpy as np
+import pandas as pd
 from datetime import date
 import yfinance as yf
 from prophet import Prophet
@@ -58,7 +60,7 @@ forecast = m.predict(future)
 st.subheader('Forecast data')
 st.write(forecast.tail())
     
-st.write(f'Forecast plot for {n_years} years')
+st.write("Forecast plot")
 fig1 = plot_plotly(m, forecast)
 st.plotly_chart(fig1)
 
