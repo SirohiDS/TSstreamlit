@@ -28,7 +28,6 @@ def load_data(ticker):
     data['Open'] = pd.to_numeric(data['Open'], errors='coerce')
     data['Close'] = pd.to_numeric(data['Close'], errors='coerce')
     data.fillna(method='ffill', inplace=True)
-    data.fillna(method='bfill', inplace=True)
     return data
 
 data_load_state = st.text('Loading data...')
