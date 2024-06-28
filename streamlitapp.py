@@ -60,6 +60,12 @@ m.fit(df_train)
 future = m.make_future_dataframe(periods=period)
 forecast = m.predict(future)
 
+# Ensure forecast data is clean
+forecast['ds'] = pd.to_datetime(forecast['ds'])
+forecast['yhat'] = pd.to_numeric(forecast['yhat'], errors='coerce')
+forecast['yhat_lower'] = pd.to_numeric(forecast['yhat_lower'], errors='coerce')
+forecast['yhat_upper'] = pd.to_numeric(forecast['yhat_upper'], errors='coerce')
+
 # Show and plot forecast
 st.subheader('Forecast data')
 st.write(forecast.tail())
@@ -85,4 +91,3 @@ st.write(df_p.head())
 st.write("Cross-Validation MAPE Plot")
 fig4 = plot_cross_validation_metric(df_cv, metric='mape')
 st.pyplot(fig4)
-
