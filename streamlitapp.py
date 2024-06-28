@@ -68,23 +68,12 @@ st.write('Forecast plot')
 fig1 = plot_plotly(m, forecast)
 st.plotly_chart(fig1)
 
-# Plot forecast components
-st.write("Forecast components")
-fig2 = plot_components(m, forecast)  # Use Prophet's plot_components function directly
-st.pyplot(fig2)  # Render the matplotlib figure with st.pyplot
-
 # Additional plots
 st.write("Change Points Plot - Marking Trends")
 fig3 = m.plot(forecast)
 a = add_changepoints_to_plot(fig3.gca(), m, forecast)
 st.pyplot(fig3)
 
-st.write("Cross-Validation Performance Metrics")
-df_cv = cross_validation(m, initial='730 days', period='180 days', horizon='365 days')
-df_p = performance_metrics(df_cv)
-st.write(df_p.head())
 
-st.write("Cross-Validation MAPE Plot")
-fig4 = plot_cross_validation_metric(df_cv, metric='mape')
-st.pyplot(fig4)
+
 
