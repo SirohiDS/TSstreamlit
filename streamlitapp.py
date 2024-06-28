@@ -67,13 +67,3 @@ st.write(forecast.tail())
 st.write('Forecast plot')
 fig1 = plot_plotly(m, forecast)
 st.plotly_chart(fig1)
-
-# Additional plots
-st.write("Change Points Plot - Marking Trends")
-fig3 = m.plot(forecast)
-a = add_changepoints_to_plot(fig3.gca(), m, forecast)
-st.pyplot(fig3)
-
-
-
-
